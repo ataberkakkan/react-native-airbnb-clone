@@ -3,10 +3,13 @@ import { StatusBar } from "expo-status-bar";
 import { Stack } from "expo-router";
 import ExploreHeader from "@/components/ExploreHeader";
 import Listings from "@/components/Listings";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import listingsData from "@/assets/data/airbnb-listings.json";
 
 const Page = () => {
   const [category, setCategory] = useState("Tiny homes");
+  const items = useMemo(() => listingsData as any, []);
+
   const onDataChanged = (category: string) => {
     setCategory(category);
   };
@@ -18,7 +21,7 @@ const Page = () => {
           header: () => <ExploreHeader onCategoryChanged={onDataChanged} />,
         }}
       />
-      <Listings listings={[]} category={category} />
+      <Listings listings={items} category={category} />
 
       <StatusBar style="dark" />
     </View>
