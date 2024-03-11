@@ -4,7 +4,9 @@ import { Stack } from "expo-router";
 import ExploreHeader from "@/components/ExploreHeader";
 import Listings from "@/components/Listings";
 import { useMemo, useState } from "react";
+import ListingsMap from "@/components/ListingsMap";
 import listingsData from "@/assets/data/airbnb-listings.json";
+import listingDataGeo from "@/assets/data/airbnb-listings.geo.json";
 
 const Page = () => {
   const [category, setCategory] = useState("Tiny homes");
@@ -21,7 +23,9 @@ const Page = () => {
           header: () => <ExploreHeader onCategoryChanged={onDataChanged} />,
         }}
       />
-      <Listings listings={items} category={category} />
+      {/* <Listings listings={items} category={category} /> */}
+
+      <ListingsMap listings={listingDataGeo} />
 
       <StatusBar style="dark" />
     </View>
